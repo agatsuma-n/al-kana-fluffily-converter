@@ -1,4 +1,4 @@
-# al-kana-fluffily-converter
+# al-kana-fluffy-converter
 
 ふんわりした英単語 -> カタカナ変換
 
