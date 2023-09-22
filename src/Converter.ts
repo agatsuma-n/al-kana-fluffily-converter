@@ -54,6 +54,7 @@ export class Converter {
 		this.createWorkWords();
 
 		this.workWords.forEach((value) => {
+			// TODO: わざわざローマ字に変換せずにいきなりカナに変換した方がよいのでは？
 			// 変換対象をローマ字に変換
 			const roma = this.convertWordToRoma(value);
 
