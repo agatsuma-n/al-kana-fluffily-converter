@@ -111,7 +111,7 @@ export class WordToRomaConverter extends BaseConverter {
 		// 全ての一致するパターン取得
 		const matches = this.getAllMatch(word);
 
-		// 変換位置が早い順
+		// 変換優先順にソート
 		matches.sort(this.sortByPriorityConversion);
 
 		// 置換
