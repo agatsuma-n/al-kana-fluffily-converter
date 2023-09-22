@@ -1,13 +1,13 @@
+export const VowelCharacter = "aiueo";
+
 /**
  * 母音
  */
-export const VowelCharacter = "aiueo";
-
 export const Vowel = `[${VowelCharacter}]`;
+
 /**
  * 子音
  */
-
 export const Consonant = `[b-df-hj-np-tv-z]`;
 
 export const BaseRomaPattern = `(${Consonant}{1,2})?(${Vowel}{1})`;

@@ -68,13 +68,4 @@ export class Converter {
 
 		return this.afterWord.join(WordDelimiter);
 	}
-
-	/**
-	 * TODO 不要そう
-	 * 変換完了判定
-	 * @returns 変換完了ならtrue
-	 */
-	isComplete() {
-		return this.workWords == null || this.workWords.length === 0;
-	}
 }

@@ -5,12 +5,14 @@ import { Dictionary } from "./types";
  * NGワード対策無し
  */
 export class FluffyConverter {
-	converter!: Converter;
+	originalDictionary?: Dictionary[];
 
-	additionalDictionary?: Dictionary[];
-
-	constructor(additionalDictionary?: Dictionary[]) {
-		this.additionalDictionary = additionalDictionary;
+	/**
+	 *
+	 * @param originalDictionary 未実装。渡された辞書をもとに優先的に変換する
+	 */
+	constructor(originalDictionary?: Dictionary[]) {
+		this.originalDictionary = originalDictionary;
 	}
 
 	/**
@@ -23,7 +25,7 @@ export class FluffyConverter {
 		// 重複が存在しないか確認する
 
 		// 変換
-		this.converter = new Converter(word);
-		return this.converter.convert();
+		const converter = new Converter(word);
+		return converter.convert();
 	}
 }

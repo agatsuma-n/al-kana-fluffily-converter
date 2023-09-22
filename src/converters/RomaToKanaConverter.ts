@@ -1,12 +1,16 @@
 import { BaseConverter } from ".";
 import * as types from "../types";
 
+/**
+ * ローマ字からカナに変換する
+ */
 export class RomaToKanaConverter extends BaseConverter {
 	get conversions() {
 		return types.RomaToKanaConversions;
 	}
 
 	replaceSmallWord(value: string) {
+		// TODO: 「特定の文字が2つ」ではなく、「連続した同じ文字が複数」にしたい
 		const smallMatch = types.SmallConversions.find(
 			(conversion) =>
 				conversion.conversionPattern.main === value.substring(0, 2)
@@ -21,7 +25,7 @@ export class RomaToKanaConverter extends BaseConverter {
 	}
 
 	findConversion(value: string) {
-		// conversionPatternと通常の比較
+		// 通常の比較
 		const conversion = this.conversions.find(
 			(conversion) => conversion.conversionPattern.main === value
 		);
@@ -67,7 +71,7 @@ export class RomaToKanaConverter extends BaseConverter {
 			// 変換範囲を保存
 			replaceStartIndex += replaceRange.length;
 
-			// 小書き置換
+			// TODO: 小書き置換
 			replaceRange = this.replaceSmallWord(replaceRange);
 
 			// 置換

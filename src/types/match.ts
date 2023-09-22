@@ -1,16 +1,8 @@
 export interface MatchResult {
 	/**
-	 * main以外も含めたマッチ箇所
-	 * いらないような
-	 * @deprecated
-	 */
-	// matchValue: string;
-	// matchIndex: number;
-
-	/**
 	 * mainに限定したマッチ箇所
 	 */
-	value: string;
+	mainPattern: string;
 	startIndex: number;
 	endIndex: number;
 

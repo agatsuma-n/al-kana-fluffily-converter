@@ -151,4 +151,10 @@ export const SmallConversions: WordConversion[] = [
 		},
 		afterConversion: "t",
 	},
+	{
+		conversionPattern: {
+			main: "pp",
+		},
+		afterConversion: "p",
+	},
 ];

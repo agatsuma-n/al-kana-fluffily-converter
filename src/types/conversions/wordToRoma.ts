@@ -18,6 +18,7 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { main: "cu", suffix: "p" },
 		afterConversion: "ka",
 	},
+	{ conversionPattern: { main: "c", suffix: "a" }, afterConversion: "k" },
 	{ conversionPattern: { main: "ar" }, afterConversion: "a-" },
 	{ conversionPattern: { main: "cau" }, afterConversion: "kou" },
 	{ conversionPattern: { main: "tio" }, afterConversion: "sho" },
