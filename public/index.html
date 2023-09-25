@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>al-kana-fluffy-converter</title>
+		<script src="/js/bundle.js"></script>
+	</head>
+	<body>
+		<head>
+			<h1>al-kana-fluffy-converter</h1>
+		</head>
+		<div class="user-input">
+			<form>
+				<p>
+					英単語入力<br />
+					改行して複数件入力することができます<br />
+				</p>
+				<div>
+					<textarea id="inputWords" rows="10" cols="30"></textarea>
+				</div>
+				<div>
+					<button id="execConvert" type="button">変換</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="result">
+			<p>変換結果</p>
+			<ul class="convert-list"></ul>
+		</div>
+
+		<script>
+			const manager = new alkana.MainPageManager();
+			manager.init();
+		</script>
+	</body>
+</html>
