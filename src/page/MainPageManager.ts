@@ -1,5 +1,5 @@
-import { FluffyConverter } from "./FluffyConverter";
-import * as utils from "./utils";
+import { FluffyConverter } from "../FluffyConverter";
+import * as utils from "../utils";
 
 export class MainPageManager {
 	execConvert() {
@@ -18,10 +18,22 @@ export class MainPageManager {
 		const words = inputWordsTextArea.value.split("\n");
 
 		words.forEach((word) => {
-			const result = converter.convert(word);
-			console.log(`${word}: ${result}`);
+			const kana = converter.convert(word);
+			console.log(`${word}: ${kana}`);
+
 			const li = document.createElement("li");
-			li.innerHTML = result;
+			li.classList.add("row");
+
+			const addPToLi = (value: string) => {
+				const pElement = document.createElement("p");
+				pElement.classList.add("col");
+				pElement.innerHTML = value;
+				li.appendChild(pElement);
+			};
+			addPToLi(word);
+			addPToLi("→");
+			addPToLi(kana);
+
 			convertList.appendChild(li);
 		});
 	}

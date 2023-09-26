@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
 	entry: {
-		bundle: "./src/main.ts",
+		bundle: "./src/page/MainPageManager.ts",
 	},
 	output: {
 		path: path.join(__dirname, "public", "js"),
