@@ -1,5 +1,5 @@
 import { WordConversion } from ".";
-import { Consonant, Vowel } from "../wordPattern";
+import { Consonant, Vowel } from "../regularExpression";
 
 export const WordToRomaConversions: WordConversion[] = [
 	{
@@ -19,7 +19,6 @@ export const WordToRomaConversions: WordConversion[] = [
 		afterConversion: "ka",
 	},
 	{ conversionPattern: { main: "c", suffix: "a" }, afterConversion: "k" },
-	{ conversionPattern: { main: "ca", suffix: "p" }, afterConversion: "kya" },
 	{ conversionPattern: { main: "ar" }, afterConversion: "a-" },
 	{ conversionPattern: { main: "cau" }, afterConversion: "kou" },
 	{ conversionPattern: { main: "tio" }, afterConversion: "sho" },
