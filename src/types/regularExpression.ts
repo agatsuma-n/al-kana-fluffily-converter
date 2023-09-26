@@ -12,8 +12,6 @@ export const Consonant = `[b-df-hj-np-tv-z]`;
 
 export const BaseRomaPattern = `(${Consonant}{1,2})?(${Vowel}{1})`;
 
-export const NPattern = `n|ny?${Vowel}{1}`;
-
 /**
  * ローマ字パターン
  * - 子音1～2（存在なし許容）と母音 a、ki、hyaなど
