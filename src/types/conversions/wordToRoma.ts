@@ -1,5 +1,5 @@
 import { WordConversion } from ".";
-import { Consonant, Vowel } from "../regularExpression";
+import { Consonant, Vowel } from "../wordPattern";
 
 export const WordToRomaConversions: WordConversion[] = [
 	{
@@ -19,6 +19,7 @@ export const WordToRomaConversions: WordConversion[] = [
 		afterConversion: "ka",
 	},
 	{ conversionPattern: { main: "c", suffix: "a" }, afterConversion: "k" },
+	{ conversionPattern: { main: "ca", suffix: "p" }, afterConversion: "kya" },
 	{ conversionPattern: { main: "ar" }, afterConversion: "a-" },
 	{ conversionPattern: { main: "cau" }, afterConversion: "kou" },
 	{ conversionPattern: { main: "tio" }, afterConversion: "sho" },
@@ -63,4 +64,15 @@ export const WordToRomaConversions: WordConversion[] = [
 	},
 	{ conversionPattern: { main: "my" }, afterConversion: "ai" },
 	{ conversionPattern: { main: "oy" }, afterConversion: "o-i" },
+	{ conversionPattern: { main: "ey" }, afterConversion: "i-" },
+	{
+		conversionPattern: { main: "f", suffix: Consonant },
+		afterConversion: "hu",
+	},
+	{ conversionPattern: { prefix: "n", main: "t" }, afterConversion: "to" },
+	{ conversionPattern: { main: "lo" }, afterConversion: "ro" },
+	{ conversionPattern: { main: "ck" }, afterConversion: "kku" },
+	{ conversionPattern: { main: "s", suffix: "$" }, afterConversion: "su" },
+	{ conversionPattern: { prefix: Vowel, main: "k" }, afterConversion: "ku" },
+	// {conversionPattern: {main: "oo",},afterConversion: "uッ",},
 ];

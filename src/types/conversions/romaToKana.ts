@@ -157,4 +157,16 @@ export const SmallConversions: WordConversion[] = [
 		},
 		afterConversion: "p",
 	},
+	{
+		conversionPattern: {
+			main: "kk",
+		},
+		afterConversion: "k",
+	},
+	// {
+	// 	conversionPattern: {
+	// 		main: "oo",
+	// 	},
+	// 	afterConversion: "u",
+	// },
 ];
