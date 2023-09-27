@@ -74,5 +74,19 @@ export const WordToRomaConversions: WordConversion[] = [
 	{ conversionPattern: { main: "ck" }, afterConversion: "kku" },
 	{ conversionPattern: { main: "s", suffix: "$" }, afterConversion: "su" },
 	{ conversionPattern: { prefix: Vowel, main: "k" }, afterConversion: "ku" },
+	// TODO: book -> bukkuにしたい
 	// {conversionPattern: {main: "oo",},afterConversion: "uッ",},
+
+	// TODO: 再変換しない対応が必要そう
+	// イメージ
+	// afterConversion: {
+	//		main: auto, isNotReconvert?: boolean
+	// }
+	// 現時点では他に該当するパターンが無いため、outをaウトにすることで対応する
+	{ conversionPattern: { main: "out" }, afterConversion: "aウト" },
+	{
+		conversionPattern: { main: "pi", suffix: "$|l" },
+		afterConversion: "pai",
+	},
+	{ conversionPattern: { main: "am", suffix: "b" }, afterConversion: "an" },
 ];
