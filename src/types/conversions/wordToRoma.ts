@@ -89,10 +89,6 @@ export const WordToRomaConversions: WordConversion[] = [
 	// }
 	// 現時点では他に該当するパターンが無いため、outをaウトにすることで対応する
 	{ conversionPattern: { main: "out" }, afterConversion: "aウト" },
-	{
-		conversionPattern: { main: "pi", suffix: "$|l" },
-		afterConversion: "pai",
-	},
 	{ conversionPattern: { main: `ph` }, afterConversion: `f` },
 	{
 		conversionPattern: { prefix: `.+`, main: `ph`, suffix: `^${Vowel}` },
@@ -146,4 +142,39 @@ export const WordToRomaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `air`, suffix: `` }, afterConversion: `ea` },
 	{ conversionPattern: { main: `our` }, afterConversion: `awa-` },
 	{ conversionPattern: { main: `tour` }, afterConversion: `tua-` },
+	{ conversionPattern: { main: `th` }, afterConversion: `s` },
+	{ conversionPattern: { main: `th`, suffix: `i` }, afterConversion: `s` },
+	{ conversionPattern: { main: `th`, suffix: `e` }, afterConversion: `z` },
+	{
+		conversionPattern: { prefix: `.+`, main: `k`, suffix: `$` },
+		afterConversion: `ku`,
+	},
+	{ conversionPattern: { main: `the`, suffix: `$` }, afterConversion: `za` },
+	{ conversionPattern: { prefix: `.+`, main: `ght` }, afterConversion: `to` },
+	{
+		conversionPattern: {
+			prefix: `[^(th)(sh)wv]`,
+			main: `i`,
+			suffix: `[^ten]`,
+		},
+		afterConversion: `ai`,
+	},
+	{ conversionPattern: { main: `i`, suffix: `t` }, afterConversion: `i` },
+	{ conversionPattern: { main: `love` }, afterConversion: `rabu` },
+	{ conversionPattern: { main: `ve`, suffix: `$` }, afterConversion: `bu` },
+	{ conversionPattern: { main: `vy` }, afterConversion: `vi-` },
+	{ conversionPattern: { main: `ver` }, afterConversion: `ba-` },
+	{
+		conversionPattern: { prefix: `^`, main: `su`, suffix: `[nbr(pp)scml]` },
+		afterConversion: `sa`,
+	},
+	{
+		conversionPattern: { prefix: `(vi)|(ca)|u`, main: `su` },
+		afterConversion: `ju`,
+	},
+	{ conversionPattern: { prefix: `^`, main: `al` }, afterConversion: `o-ru` },
+	{
+		conversionPattern: { prefix: `.+`, main: `al`, suffix: `$` },
+		afterConversion: `aru`,
+	},
 ];

@@ -140,6 +140,8 @@ export const RomaToKanaConversions: WordConversion[] = [
 
 	{ conversionPattern: { main: "pyo" }, afterConversion: "ピョ" },
 	{ conversionPattern: { main: "va" }, afterConversion: "ヴァ" },
+	{ conversionPattern: { main: `vi` }, afterConversion: `ヴィ` },
+	{ conversionPattern: { main: `vo` }, afterConversion: `ヴォ` },
 
 	{ conversionPattern: { main: "-" }, afterConversion: "ー" },
 
