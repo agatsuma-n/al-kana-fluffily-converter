@@ -12,7 +12,7 @@ export const Consonant = `[b-df-hj-mp-tv-z]`;
 
 export const BaseRomaPattern = `(${Consonant}{1,2})?(${Vowel}{1})`;
 
-export const NPattern = `n|ny?${Vowel}{1}`;
+export const NPattern = `ny?${Vowel}{1}|n`;
 
 /**
  * ローマ字パターン

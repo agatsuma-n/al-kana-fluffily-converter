@@ -63,8 +63,12 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { prefix: Consonant, main: "ay" },
 		afterConversion: "ei",
 	},
-	{ conversionPattern: { main: "my" }, afterConversion: "ai" },
-	{ conversionPattern: { main: "oy" }, afterConversion: "o-i" },
+	{ conversionPattern: { main: "my" }, afterConversion: "mai" },
+	{ conversionPattern: { prefix: `b`, main: `oy` }, afterConversion: `o-i` },
+	{
+		conversionPattern: { main: `oy`, suffix: `${Consonant}?` },
+		afterConversion: `oi`,
+	},
 	{ conversionPattern: { main: "ey" }, afterConversion: "i-" },
 	{
 		conversionPattern: { main: "f", suffix: Consonant },
@@ -89,5 +93,57 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { main: "pi", suffix: "$|l" },
 		afterConversion: "pai",
 	},
+	{ conversionPattern: { main: `ph` }, afterConversion: `f` },
+	{
+		conversionPattern: { prefix: `.+`, main: `ph`, suffix: `^${Vowel}` },
+		afterConversion: `hu`,
+	},
+	{
+		conversionPattern: { prefix: `${Vowel}`, main: `ne`, suffix: `` },
+		afterConversion: `n`,
+	},
+	{
+		conversionPattern: { main: `no`, suffix: `[^nr]?` },
+		afterConversion: `no-`,
+	},
+	{
+		conversionPattern: { main: `not`, suffix: `${Consonant}?` },
+		afterConversion: `ノット`,
+	},
+	{
+		conversionPattern: { prefix: `${Vowel}|y`, main: `one`, suffix: `` },
+		afterConversion: ``,
+	},
 	{ conversionPattern: { main: "am", suffix: "b" }, afterConversion: "an" },
+	{ conversionPattern: { main: `dy` }, afterConversion: `dhi` },
+	{ conversionPattern: { main: `ny` }, afterConversion: `ni` },
+	{ conversionPattern: { main: `ty`, suffix: `` }, afterConversion: `thi` },
+	{
+		conversionPattern: { prefix: `[r(ll)s]?`, main: `y`, suffix: `` },
+		afterConversion: `i-`,
+	},
+	{ conversionPattern: { main: `l{1,2}`, suffix: `` }, afterConversion: `r` },
+	{ conversionPattern: { main: `know` }, afterConversion: `nou` },
+	{ conversionPattern: { main: `kni` }, afterConversion: `nai` },
+	{ conversionPattern: { main: `kni`, suffix: `tc` }, afterConversion: `ni` },
+	{ conversionPattern: { main: `knee` }, afterConversion: `ni-` },
+	{ conversionPattern: { main: `k`, suffix: `n` }, afterConversion: `n` },
+	{ conversionPattern: { main: `knu` }, afterConversion: `na` },
+	{
+		conversionPattern: { prefix: `${Vowel}?`, main: `now` },
+		afterConversion: `nau`,
+	},
+	{
+		conversionPattern: { prefix: `(br)|c|(fl)|g`, main: `ow` },
+		afterConversion: `au`,
+	},
+	{ conversionPattern: { main: `ow`, suffix: `` }, afterConversion: `ou` },
+	{ conversionPattern: { main: `i[eo]r` }, afterConversion: `ia` },
+	{
+		conversionPattern: { prefix: `.+`, main: `ce`, suffix: `$` },
+		afterConversion: `su`,
+	},
+	{ conversionPattern: { main: `air`, suffix: `` }, afterConversion: `ea` },
+	{ conversionPattern: { main: `our` }, afterConversion: `awa-` },
+	{ conversionPattern: { main: `tour` }, afterConversion: `tua-` },
 ];

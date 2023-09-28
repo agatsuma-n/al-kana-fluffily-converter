@@ -142,6 +142,10 @@ export const RomaToKanaConversions: WordConversion[] = [
 	{ conversionPattern: { main: "va" }, afterConversion: "ヴァ" },
 
 	{ conversionPattern: { main: "-" }, afterConversion: "ー" },
+
+	{ conversionPattern: { main: `dhi` }, afterConversion: `ディ` },
+	{ conversionPattern: { main: `dhu` }, afterConversion: `デュ` },
+	{ conversionPattern: { main: `thi` }, afterConversion: `ティ` },
 ];
 
 export const SmallConversions: WordConversion[] = [
