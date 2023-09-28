@@ -153,7 +153,7 @@ export const WordToRomaConversions: WordConversion[] = [
 	{ conversionPattern: { prefix: `.+`, main: `ght` }, afterConversion: `to` },
 	{
 		conversionPattern: {
-			prefix: `[^(th)(sh)wv]`,
+			prefix: `[^(th)(sh)wvk]`,
 			main: `i`,
 			suffix: `[^ten]`,
 		},
@@ -176,5 +176,12 @@ export const WordToRomaConversions: WordConversion[] = [
 	{
 		conversionPattern: { prefix: `.+`, main: `al`, suffix: `$` },
 		afterConversion: `aru`,
+	},
+	{ conversionPattern: { main: `tw` }, afterConversion: `twu` },
+	{ conversionPattern: { main: `two` }, afterConversion: `tw-` },
+	{ conversionPattern: { main: `ds`, suffix: `$` }, afterConversion: `zu` },
+	{
+		conversionPattern: { main: `ids`, suffix: `$` },
+		afterConversion: `izzu`,
 	},
 ];
