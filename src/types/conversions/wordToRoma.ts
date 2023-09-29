@@ -107,8 +107,12 @@ export const WordToRomaConversions: WordConversion[] = [
 		afterConversion: `ノット`,
 	},
 	{
-		conversionPattern: { prefix: `${Vowel}|y`, main: `one`, suffix: `` },
-		afterConversion: ``,
+		conversionPattern: { prefix: `${Vowel}|y`, main: `o`, suffix: `ne` },
+		afterConversion: `wa`,
+	},
+	{
+		conversionPattern: { prefix: `^`, main: `o`, suffix: `ne` },
+		afterConversion: `wa`,
 	},
 	{ conversionPattern: { main: "am", suffix: "b" }, afterConversion: "an" },
 	{ conversionPattern: { main: `dy` }, afterConversion: `dhi` },

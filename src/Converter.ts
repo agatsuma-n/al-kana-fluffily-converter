@@ -30,7 +30,9 @@ export class Converter {
 		}
 
 		// スペース区切りで配列変換
-		this.workWords = word.split(WordDelimiter);
+		this.workWords = word
+			.split(WordDelimiter)
+			.map((value) => value.toLocaleLowerCase());
 		// this.workWords = words?.flatMap((word) => word.split(" "));
 	}
 
