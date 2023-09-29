@@ -151,29 +151,4 @@ export const RomaToKanaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `twu` }, afterConversion: `トゥ` },
 ];
 
-export const SmallConversions: WordConversion[] = [
-	{
-		conversionPattern: {
-			main: "tt",
-		},
-		afterConversion: "t",
-	},
-	{
-		conversionPattern: {
-			main: "pp",
-		},
-		afterConversion: "p",
-	},
-	{
-		conversionPattern: {
-			main: "kk",
-		},
-		afterConversion: "k",
-	},
-	{
-		conversionPattern: {
-			main: "zz",
-		},
-		afterConversion: "z",
-	},
-];
+export const SmallPattern = "(.)\\1";

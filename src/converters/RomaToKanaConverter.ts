@@ -10,11 +10,10 @@ export class RomaToKanaConverter extends BaseConverter {
 	}
 
 	replaceSmallWord(value: string) {
-		// TODO: 「特定の文字が2つ」ではなく、「連続した同じ文字が複数」にしたい
-		const smallMatch = types.SmallConversions.find(
-			(conversion) =>
-				conversion.conversionPattern.main === value.substring(0, 2)
-		);
+		const smallMatch = value
+			.substring(0, 2)
+			.match(new RegExp(types.SmallPattern));
+
 		if (smallMatch == null) {
 			return value;
 		}

@@ -13,7 +13,7 @@ describe("converter", () => {
 		expect(fluffy.convert("front")).toBe("フロント");
 		expect(fluffy.convert("London")).toBe("ロンドン");
 		expect(fluffy.convert("socks")).toBe("ソックス");
-		// expect(fluffy.convert("book")).toBe("ブック");
+		expect(fluffy.convert("book")).toBe("ブック");
 		expect(fluffy.convert("about")).toBe("アバウト");
 		expect(fluffy.convert("pilot")).toBe("パイロット");
 		// TODO: カ、キャのパターンが難解なため後回し
@@ -54,7 +54,7 @@ describe("converter", () => {
 		// 	"トゥレットシンドローム"
 		// );
 		expect(fluffy.convert("two")).toBe("トゥー");
-		// expect(fluffy.convert("goods")).toBe("グッズ");
+		expect(fluffy.convert("goods")).toBe("グッズ");
 		expect(fluffy.convert("kids")).toBe("キッズ");
 	});
 });

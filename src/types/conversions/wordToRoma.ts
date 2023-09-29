@@ -188,4 +188,10 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { main: `ids`, suffix: `$` },
 		afterConversion: `izzu`,
 	},
+	{ conversionPattern: { main: `oo`, suffix: `.` }, afterConversion: `uッ` },
+	{
+		conversionPattern: { prefix: `.`, main: `oo`, suffix: `$` },
+		afterConversion: `u-`,
+	},
+	{ conversionPattern: { prefix: `.`, main: `ee` }, afterConversion: `i-` },
 ];
