@@ -1,3 +1,3 @@
 export * from "./conversions";
-export * from "./regularExpression";
+export * from "./wordPattern";
 export * from "./match";

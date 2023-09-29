@@ -140,8 +140,15 @@ export const RomaToKanaConversions: WordConversion[] = [
 
 	{ conversionPattern: { main: "pyo" }, afterConversion: "ピョ" },
 	{ conversionPattern: { main: "va" }, afterConversion: "ヴァ" },
+	{ conversionPattern: { main: `vi` }, afterConversion: `ヴィ` },
+	{ conversionPattern: { main: `vo` }, afterConversion: `ヴォ` },
 
 	{ conversionPattern: { main: "-" }, afterConversion: "ー" },
+
+	{ conversionPattern: { main: `dhi` }, afterConversion: `ディ` },
+	{ conversionPattern: { main: `dhu` }, afterConversion: `デュ` },
+	{ conversionPattern: { main: `thi` }, afterConversion: `ティ` },
+	{ conversionPattern: { main: `twu` }, afterConversion: `トゥ` },
 ];
 
 export const SmallConversions: WordConversion[] = [
@@ -156,5 +163,17 @@ export const SmallConversions: WordConversion[] = [
 			main: "pp",
 		},
 		afterConversion: "p",
+	},
+	{
+		conversionPattern: {
+			main: "kk",
+		},
+		afterConversion: "k",
+	},
+	{
+		conversionPattern: {
+			main: "zz",
+		},
+		afterConversion: "z",
 	},
 ];
