@@ -4,6 +4,7 @@ import {
 	CharacterToKanaConverter,
 } from "./converters";
 import { WordDelimiter } from "./types";
+import * as utils from "./utils";
 
 export class Converter {
 	beforeWord: string;
@@ -21,19 +22,21 @@ export class Converter {
 	}
 
 	createWorkWords() {
-		// TODO: 記号をスペースに変換
-		// const word = utils.replaceSymbolToSpace(this.beforeWord);
-		const word = this.beforeWord;
+		// 記号を変換
+		const word = utils.replaceSymbolToSpaceOrOmit(this.beforeWord);
 
 		if (word == null) {
 			return;
 		}
 
+		// 大文字毎に単語として扱うため
+		// 大文字の前にスペースを挿入
+		const spaceWord = utils.insertSpaceBeforeUpperCase(word);
+
 		// スペース区切りで配列変換
-		this.workWords = word
+		this.workWords = spaceWord
 			.split(WordDelimiter)
 			.map((value) => value.toLocaleLowerCase());
-		// this.workWords = words?.flatMap((word) => word.split(" "));
 	}
 
 	convertWordToRoma(value: string) {
@@ -56,19 +59,26 @@ export class Converter {
 		this.createWorkWords();
 
 		this.workWords.forEach((value) => {
-			// TODO: わざわざローマ字に変換せずにいきなりカナに変換した方がよいのでは？
-			// 変換対象をローマ字に変換
-			const roma = this.convertWordToRoma(value);
+			let kana = "";
 
-			// ローマ字をカナに変換
-			const incompleteKana = this.convertRomaToKana(roma);
+			if (value.length === 1) {
+				// 1文字の場合はアルファベット読みをする
+				kana = this.convertCharacter(value);
+			} else {
+				// TODO: わざわざローマ字に変換せずにいきなりカナに変換した方がよいのでは？
+				// 変換対象をローマ字に変換
+				const roma = this.convertWordToRoma(value);
 
-			// 変換できなかった文字を文字単位でカナ変換
-			const kana = this.convertCharacter(incompleteKana);
+				// ローマ字をカナに変換
+				const incompleteKana = this.convertRomaToKana(roma);
+
+				// 変換できなかった文字を文字単位でカナ変換
+				kana = this.convertCharacter(incompleteKana);
+			}
 
 			this.afterWord.push(kana);
 		});
 
-		return this.afterWord.join(WordDelimiter);
+		return this.afterWord.join("");
 	}
 }

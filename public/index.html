@@ -25,12 +25,9 @@
 			<div class="row">
 				<div class="col-5 mx-auto">
 					<div class="user-input">
-						<p class="h3">入力</p>
+						<p class="h3">英単語を入力してください</p>
 						<form>
 							<div class="row">
-								<label class="form-label"
-									>英単語を入力してください</label
-								>
 								<textarea
 									id="inputWords"
 									class="form-control"
@@ -52,6 +49,23 @@
 						<p class="h3">変換結果</p>
 						<ul class="convert-list container"></ul>
 					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-5 mx-auto">
+					<p>変換ルール</p>
+					<ul>
+						<li>
+							大文字は単語の先頭文字として扱います(TomHit->tomとhit)
+						</li>
+						<li>
+							記号は文字の区切りとして扱います(ha@m->haとm)<br />ただし'(アポストロフィ)は読み飛ばします
+						</li>
+						<li>
+							単語が1文字の場合、アルファベット読みをします(A->エー、TOM->ティーオーエム)
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
