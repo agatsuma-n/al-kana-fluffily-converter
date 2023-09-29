@@ -23,3 +23,5 @@ export const NPattern = `ny?${Vowel}{1}|n`;
 export const RomaPattern = `(${BaseRomaPattern})|(${NPattern})|(?<long>\-)`;
 
 export const WordDelimiter = " ";
+
+export const AlphabetPattern = `[a-z]`;

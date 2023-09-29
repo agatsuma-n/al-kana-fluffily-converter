@@ -33,6 +33,7 @@ export abstract class BaseConverter {
 
 	/**
 	 * この関数を上書きして実装する
+	 * TODO: 本当に必要か再検討
 	 * @param word
 	 * @returns
 	 */
