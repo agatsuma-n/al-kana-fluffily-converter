@@ -7,8 +7,9 @@ export const Vowel = `[${VowelCharacter}]`;
 
 /**
  * 子音
+ * ッも子音として扱う
  */
-export const Consonant = `[b-df-hj-mp-tv-z]`;
+export const Consonant = `[b-df-hj-mp-tv-zッ]`;
 
 export const BaseRomaPattern = `(${Consonant}{1,2})?(${Vowel}{1})`;
 
