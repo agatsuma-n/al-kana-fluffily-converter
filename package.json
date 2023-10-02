@@ -13,7 +13,7 @@
 		"build:web": "webpack --mode development",
 		"start": "webpack serve --mode development --open",
 		"test": "jest --detectOpenHandles --forceExit",
-		"deploy": "npm run build && gh-pages -d public"
+		"deploy": "npm run build:web && gh-pages -d public"
 	},
 	"repository": {
 		"type": "git",
