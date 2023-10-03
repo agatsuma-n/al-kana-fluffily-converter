@@ -9,6 +9,26 @@ export class NumberToKanaConverter extends BaseConverter {
 		return types.NumberToKanaConversions;
 	}
 
+	/**
+	 * 文字と見なされる場合1文字ずつ分解する
+	 * @param word
+	 * @returns
+	 */
+	splitIfConsiderAsCharacter(word: string) {
+		// 変換最大桁数を超える場合
+		if (word.length > types.MAXConvertDigit) {
+			return [...word];
+		}
+
+		// 0で始まる場合
+		if (word.substring(0, 1) === "0") {
+			return [...word];
+		}
+
+		// 上記以外(分割しない)
+		return [word];
+	}
+
 	findConversion(value: number) {
 		return this.conversions.find(
 			({ conversionPattern }) => conversionPattern.main === `${value}`
@@ -48,8 +68,7 @@ export class NumberToKanaConverter extends BaseConverter {
 	convert(word: string) {
 		super.convert(word);
 
-		// 変換最大桁数を超える場合は1文字ずつ分解
-		const words = word.length <= types.MAXConvertDigit ? [word] : [...word];
+		const words = this.splitIfConsiderAsCharacter(word);
 
 		words.forEach((value) => {
 			const numberWord = Number(value);
