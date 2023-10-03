@@ -62,6 +62,9 @@ export class RomaToKanaConverter extends BaseConverter {
 				this.appendConvertedWord(
 					word.substring(replaceStartIndex, match.index)
 				);
+
+				// 変換範囲を保存
+				replaceStartIndex += match.index - replaceStartIndex;
 			}
 
 			// 変換範囲を抽出
