@@ -33,5 +33,6 @@ export const NumberToKanaConversions: WordConversion[] = [
 export const HundredKana = "ハンドレッド";
 export const ThousandKana = "サウザンド";
 export const HundredSeparator = "アンド";
+export const ZeroKana = "ゼロ";
 
 export const MAXConvertDigit = 4;

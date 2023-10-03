@@ -15,21 +15,26 @@ export class NumberToKanaConverter extends BaseConverter {
 		);
 	}
 
-	addIfHasSpecifiedPlace(value: number, place: number) {
+	addIfHasSpecifiedPlace(value: number, place: number, placeKana: string) {
 		const placeConversion = this.findConversion(Math.floor(value / place));
-		if (placeConversion != null) {
-			this.appendConvertedWord(placeConversion.afterConversion);
-			return true;
+
+		if (placeConversion == null) {
+			return false;
 		}
-		return false;
+
+		this.appendConvertedWord(placeConversion.afterConversion);
+		this.appendConvertedWord(placeKana);
+		return true;
 	}
 
 	getLessThan100Kana(value: number) {
+		// 20以下の場合はマッチする単語を取得
 		if (value <= 20) {
 			const lessThan20Conversion = this.findConversion(value);
 			return lessThan20Conversion?.afterConversion ?? "";
 		}
 
+		// 20を超える場合は10の位、1の位毎に単語を取得
 		const place10Conversion = this.findConversion(
 			Math.floor(value / 10) * 10
 		);
@@ -49,13 +54,27 @@ export class NumberToKanaConverter extends BaseConverter {
 		words.forEach((value) => {
 			const numberWord = Number(value);
 
+			// 0のみの場合
+			if (numberWord === 0) {
+				this.appendConvertedWord(types.ZeroKana);
+				return;
+			}
+
 			const lessThan100 = numberWord % 100;
 
 			// 1000の位
-			const isAddThousand = this.addIfHasSpecifiedPlace(numberWord, 1000);
+			const isAddThousand = this.addIfHasSpecifiedPlace(
+				numberWord,
+				1000,
+				types.ThousandKana
+			);
 
 			// 100の位
-			const isAddHundred = this.addIfHasSpecifiedPlace(numberWord, 100);
+			const isAddHundred = this.addIfHasSpecifiedPlace(
+				numberWord % 1000,
+				100,
+				types.HundredKana
+			);
 
 			// 100未満
 			const lessThan100Kana = this.getLessThan100Kana(lessThan100);
