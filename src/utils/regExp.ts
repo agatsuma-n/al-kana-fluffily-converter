@@ -16,3 +16,8 @@ export function insertSpaceBeforeUpperCase(value: string) {
 	const reg = new RegExp("([A-Z])", "g");
 	return value.replace(reg, " $1").trim();
 }
+
+export function insertSpaceBothSideAtNumbers(value: string) {
+	const reg = new RegExp("(\\d+)", "g");
+	return value.replace(reg, " $1 ").trim();
+}
