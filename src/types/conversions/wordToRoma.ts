@@ -7,8 +7,8 @@ export const WordToRomaConversions: WordConversion[] = [
 		afterConversion: "tto",
 	},
 	{
-		conversionPattern: { prefix: Vowel, main: "m" },
-		afterConversion: "mu",
+		conversionPattern: { prefix: `${Vowel}`, main: `m`, suffix: `$` },
+		afterConversion: `mu`,
 	},
 	{
 		conversionPattern: { prefix: Vowel, main: "p" },
@@ -27,7 +27,7 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { prefix: Vowel, main: "g" },
 		afterConversion: "gu",
 	},
-	{ conversionPattern: { main: "mu" }, afterConversion: "ma" },
+	{ conversionPattern: { main: `mu`, suffix: `g` }, afterConversion: `ma` },
 	{
 		conversionPattern: {
 			prefix: Vowel,
@@ -36,7 +36,14 @@ export const WordToRomaConversions: WordConversion[] = [
 		},
 		afterConversion: "n",
 	},
-	{ conversionPattern: { main: "ur" }, afterConversion: "a-" },
+	{
+		conversionPattern: {
+			prefix: `${Consonant}`,
+			main: `ur`,
+			suffix: `${Consonant}`,
+		},
+		afterConversion: `a-`,
+	},
 	{ conversionPattern: { main: "er" }, afterConversion: "a-" },
 	{ conversionPattern: { main: `sh`, suffix: `[ie]` }, afterConversion: `s` },
 	{ conversionPattern: { main: "ie" }, afterConversion: "i-" },
@@ -178,8 +185,7 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { prefix: `.+`, main: `al`, suffix: `$` },
 		afterConversion: `aru`,
 	},
-	{ conversionPattern: { main: `tw` }, afterConversion: `twu` },
-	{ conversionPattern: { main: `two` }, afterConversion: `tw-` },
+	{ conversionPattern: { main: `two` }, afterConversion: `twu` },
 	{ conversionPattern: { main: `ds`, suffix: `$` }, afterConversion: `zu` },
 	{
 		conversionPattern: { main: `ids`, suffix: `$` },
