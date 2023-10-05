@@ -11,8 +11,12 @@ export class MainPageManager {
 			document,
 			"#inputWords"
 		);
+		const isConvertNumbersCheckBox = utils.qsStrict<HTMLInputElement>(
+			document,
+			"#isConvertNumbers"
+		);
 
-		const converter = new FluffyConverter();
+		const converter = new FluffyConverter(isConvertNumbersCheckBox.checked);
 
 		convertList.innerHTML = "";
 		const words = inputWordsTextArea.value.split("\n");
@@ -24,15 +28,15 @@ export class MainPageManager {
 			const li = document.createElement("li");
 			li.classList.add("row");
 
-			const addPToLi = (value: string) => {
+			const addPToLi = (value: string, colClass?: string) => {
 				const pElement = document.createElement("p");
-				pElement.classList.add("col");
+				pElement.classList.add(colClass ?? "col");
+				pElement.classList.add("text-break");
 				pElement.innerHTML = value;
 				li.appendChild(pElement);
 			};
-			addPToLi(word);
-			addPToLi("→");
-			addPToLi(kana);
+			addPToLi(word, "col-3");
+			addPToLi(kana, "col-7");
 
 			convertList.appendChild(li);
 		});

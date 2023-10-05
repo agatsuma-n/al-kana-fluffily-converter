@@ -5,16 +5,18 @@ export class Converter {
 	beforeWord: string;
 	workWords: string[];
 	afterWord: string[];
+	isConvertNumbers: boolean;
 
 	wordToRomaConverter = new converters.WordToRomaConverter();
 	romaToKanaConverter = new converters.RomaToKanaConverter();
 	characterToKanaConverter = new converters.CharacterToKanaConverter();
 	numberToKanaConverter = new converters.NumberToKanaConverter();
 
-	constructor(word: string) {
+	constructor(word: string, isConvertNumbers: boolean) {
 		this.beforeWord = word;
 		this.workWords = [];
 		this.afterWord = [];
+		this.isConvertNumbers = isConvertNumbers;
 	}
 
 	createWorkWords() {
@@ -74,9 +76,11 @@ export class Converter {
 		this.createWorkWords();
 
 		this.afterWord = this.workWords.map((value) => {
-			// 数字の場合
-			if (new RegExp("\\d+").test(value) === true) {
-				return this.convertNumber(value);
+			if (this.isConvertNumbers === true) {
+				// 数字の場合
+				if (new RegExp("\\d+").test(value) === true) {
+					return this.convertNumber(value);
+				}
 			}
 
 			// 1文字の場合はアルファベット読みをする

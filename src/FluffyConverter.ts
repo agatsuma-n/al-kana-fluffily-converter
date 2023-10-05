@@ -5,13 +5,15 @@ import { Dictionary } from "./types";
  * NGワード対策無し
  */
 export class FluffyConverter {
+	isConvertNumbers: boolean;
 	originalDictionary?: Dictionary[];
 
 	/**
 	 *
 	 * @param originalDictionary 未実装。渡された辞書をもとに優先的に変換する
 	 */
-	constructor(originalDictionary?: Dictionary[]) {
+	constructor(isConvertNumbers: boolean, originalDictionary?: Dictionary[]) {
+		this.isConvertNumbers = isConvertNumbers;
 		this.originalDictionary = originalDictionary;
 	}
 
@@ -25,7 +27,7 @@ export class FluffyConverter {
 		// 重複が存在しないか確認する
 
 		// 変換
-		const converter = new Converter(word);
+		const converter = new Converter(word, this.isConvertNumbers);
 		return converter.convert();
 	}
 }
