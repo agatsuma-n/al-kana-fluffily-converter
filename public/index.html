@@ -22,38 +22,59 @@
 				<h1>ふんわりカナ変換</h1>
 			</head>
 
-			<div class="row">
-				<div class="col-5 mx-auto">
-					<div class="user-input">
+			<form>
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
 						<p class="h3">英単語を入力してください</p>
-						<form>
-							<div class="row">
-								<textarea
-									id="inputWords"
-									class="form-control"
-									placeholder="改行して複数件入力することができます"
-									style="height: 200px"
-								></textarea>
-								<button
-									id="execConvert"
-									type="button"
-									class="btn btn-primary"
-								>
-									変換
-								</button>
-							</div>
-						</form>
-					</div>
-
-					<div class="result mt-3">
-						<p class="h3">変換結果</p>
-						<ul class="convert-list container"></ul>
+						<div class="form-check">
+							<input
+								id="isConvertNumbers"
+								class="form-check-input"
+								type="checkbox"
+								id="exampleCheckbox"
+								checked
+							/>
+							<label
+								class="form-check-label"
+								for="exampleCheckbox"
+							>
+								数字を変換する
+							</label>
+						</div>
+						<textarea
+							id="inputWords"
+							class="form-control"
+							placeholder="改行して複数件入力することができます"
+							style="height: 200px"
+						></textarea>
 					</div>
 				</div>
-			</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="d-grid gap-2">
+							<button
+								id="execConvert"
+								type="button"
+								class="btn btn-primary"
+							>
+								変換
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="result mt-3">
+							<p class="h3">変換結果</p>
+							<ul class="convert-list container"></ul>
+						</div>
+					</div>
+				</div>
+			</form>
 
 			<div class="row">
-				<div class="col-5 mx-auto">
+				<div class="col-lg-6 mx-auto">
 					<p>変換ルール</p>
 					<ul>
 						<li>

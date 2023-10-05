@@ -2,7 +2,7 @@ import { FluffyConverter } from "..";
 
 describe("converter", () => {
 	it("カナ変換できること", () => {
-		const fluffy = new FluffyConverter();
+		const fluffy = new FluffyConverter(true);
 
 		expect(fluffy.convert("pit")).toBe("ピット");
 		expect(fluffy.convert("pet")).toBe("ペット");
@@ -53,7 +53,7 @@ describe("converter", () => {
 		// expect(fluffy.convert("Tourette's syndrome")).toBe(
 		// 	"トゥレットシンドローム"
 		// );
-		expect(fluffy.convert("two")).toBe("トゥー");
+		expect(fluffy.convert("two")).toBe("ツー");
 		expect(fluffy.convert("goods")).toBe("グッズ");
 		expect(fluffy.convert("kids")).toBe("キッズ");
 	});
