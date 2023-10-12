@@ -4,6 +4,20 @@ describe("converter", () => {
 	it("カナ変換できること", () => {
 		const fluffy = new FluffyConverter(true);
 
+		expect(fluffy.convert("One")).toBe("ワン");
+		expect(fluffy.convert("Two")).toBe("ツー");
+		expect(fluffy.convert("Three")).toBe("スリー");
+		expect(fluffy.convert("Four")).toBe("フォー");
+		expect(fluffy.convert("Five")).toBe("ファイブ");
+		expect(fluffy.convert("Six")).toBe("シックス");
+		expect(fluffy.convert("Seven")).toBe("セブン");
+		expect(fluffy.convert("Eight")).toBe("エイト");
+		expect(fluffy.convert("Nine")).toBe("ナイン");
+		expect(fluffy.convert("Ten")).toBe("テン");
+		expect(fluffy.convert("Avengers")).toBe("アベンジャーズ");
+		expect(fluffy.convert("lamb")).toBe("ラム");
+		expect(fluffy.convert("tea")).toBe("ティー");
+		expect(fluffy.convert("team")).toBe("チーム");
 		expect(fluffy.convert("pit")).toBe("ピット");
 		expect(fluffy.convert("pet")).toBe("ペット");
 		expect(fluffy.convert("ham")).toBe("ハム");
