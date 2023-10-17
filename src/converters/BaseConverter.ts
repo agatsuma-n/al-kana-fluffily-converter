@@ -1,4 +1,5 @@
 import * as types from "../types";
+import * as utils from "../utils";
 
 export abstract class BaseConverter {
 	/**
@@ -29,6 +30,49 @@ export abstract class BaseConverter {
 
 	appendConvertedWord(value: string) {
 		this.convertedWord = `${this.convertedWord}${value}`;
+	}
+
+	/**
+	 * 全ての一致パターン取得
+	 * @param word
+	 * @returns
+	 */
+	getAllMatch(word: string) {
+		const findConversion = this.conversions
+			.flatMap(({ conversionPattern, afterConversion }) => {
+				const pattern = this.createPattern(conversionPattern);
+
+				const matches = utils.matchAllAtIgnoreCase(pattern, word);
+
+				return [...matches].map((match) => {
+					const mainPattern = match.groups!.main;
+					const startIndex =
+						(match.index ?? 0) + (match.groups?.prefix.length ?? 0);
+					return {
+						mainPattern,
+						startIndex,
+						endIndex: startIndex + mainPattern.length,
+						pattern,
+						afterConversion,
+					} as types.MatchResult;
+				});
+			})
+			.filter(utils.nonNullable);
+
+		return utils.filterUniqueMatchPattern(findConversion);
+	}
+
+	replaceByMatchPattern(word: string, matches: types.MatchResult[]) {
+		this.convertedWord = word;
+
+		matches.forEach((conversion) => {
+			// 置換
+			// $1=prefix, $2=main, $3=suffix
+			this.convertedWord = this.convertedWord.replace(
+				RegExp(conversion.pattern, "ig"),
+				`$<prefix>${conversion.afterConversion}$<suffix>`
+			);
+		});
 	}
 
 	/**

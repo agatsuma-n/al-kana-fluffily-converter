@@ -9,9 +9,14 @@ export interface WordConversion {
 	afterConversion: string;
 }
 
-export interface WordPair {
-	kana: string;
-	alpha: string;
-}
+export interface SimpleConversion {
+	/**
+	 * 変換前の単語
+	 */
+	word: string;
 
-export interface Dictionary extends WordPair {}
+	/**
+	 * 変換後のカナ
+	 */
+	kana: string;
+}

@@ -2,12 +2,9 @@ import { BaseConverter } from ".";
 import * as types from "../types";
 import * as utils from "../utils";
 
-/**
- * 英単語をローマ字に変換する
- */
-export class WordToRomaConverter extends BaseConverter {
+export class NounToKanaConverter extends BaseConverter {
 	get conversions() {
-		return types.WordToRomaConversions;
+		return types.NounToKanaConversions;
 	}
 
 	convert(word: string) {
