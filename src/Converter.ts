@@ -1,5 +1,6 @@
 import * as converters from "./converters";
 import * as utils from "./utils";
+import * as types from "./types";
 
 export class Converter {
 	beforeWord: string;
@@ -7,21 +8,38 @@ export class Converter {
 	afterWord: string[];
 	isConvertNumbers: boolean;
 
-	wordToRomaConverter = new converters.WordToRomaConverter();
-	romaToKanaConverter = new converters.RomaToKanaConverter();
-	characterToKanaConverter = new converters.CharacterToKanaConverter();
-	numberToKanaConverter = new converters.NumberToKanaConverter();
+	wordToRomaConverter: converters.WordToRomaConverter;
+	romaToKanaConverter: converters.RomaToKanaConverter;
+	characterToKanaConverter: converters.CharacterToKanaConverter;
+	numberToKanaConverter: converters.NumberToKanaConverter;
+	nounToKanaConverter: converters.NounToKanaConverter;
+	additionalConverter: converters.AdditionalConverter | null;
 
-	constructor(word: string, isConvertNumbers: boolean) {
+	constructor(
+		word: string,
+		isConvertNumbers: boolean,
+		additionalConversions?: types.SimpleConversion[]
+	) {
 		this.beforeWord = word;
 		this.workWords = [];
 		this.afterWord = [];
 		this.isConvertNumbers = isConvertNumbers;
+
+		this.wordToRomaConverter = new converters.WordToRomaConverter();
+		this.romaToKanaConverter = new converters.RomaToKanaConverter();
+		this.characterToKanaConverter =
+			new converters.CharacterToKanaConverter();
+		this.numberToKanaConverter = new converters.NumberToKanaConverter();
+		this.nounToKanaConverter = new converters.NounToKanaConverter();
+		this.additionalConverter =
+			additionalConversions == null
+				? null
+				: new converters.AdditionalConverter(additionalConversions);
 	}
 
-	createWorkWords() {
+	createWorkWords(beforeValue: string) {
 		// 記号を変換
-		const word = utils.replaceSymbolToSpaceOrOmit(this.beforeWord);
+		const word = utils.replaceSymbolToSpaceOrOmit(beforeValue);
 
 		if (word == null) {
 			return;
@@ -41,19 +59,26 @@ export class Converter {
 			.map((value) => value.toLocaleLowerCase());
 	}
 
+	convertAdditionalConversion(value: string) {
+		if (this.additionalConverter == null) {
+			return value;
+		}
+
+		return this.additionalConverter.convert(value);
+	}
+
 	convertAlphabet(value: string) {
 		return this.characterToKanaConverter.convert(value);
 	}
 
 	convertEnglishWord(value: string) {
-		// // カナに変換
-		// // 全て変換できた場合、入力文字列はローマ字と見なす
-		// const kana = this.romaToKanaConverter.convert(value);
-		// if (new RegExp("[a-z]+").test(kana) === false) {
-		// 	return kana;
+		// // カナに変換できるか確認
+		// // 英字が無ければ変換できたと判定し返却
+		// const testKana = this.romaToKanaConverter.convert(value);
+		// if (utils.hasAlphabet(testKana) === false) {
+		// 	return testKana;
 		// }
 
-		// TODO: わざわざローマ字に変換せずにいきなりカナに変換した方がよいのでは？
 		// 変換対象をローマ字に変換
 		const roma = this.wordToRomaConverter.convert(value);
 
@@ -68,14 +93,32 @@ export class Converter {
 		return this.numberToKanaConverter.convert(value);
 	}
 
+	convertNoun(value: string) {
+		return this.nounToKanaConverter.convert(value);
+	}
+
 	/**
 	 * メイン関数
 	 */
 	convert() {
+		// 追加辞書で変換し、英文字が無ければ返却
+		const additionalValue = this.convertAdditionalConversion(
+			this.beforeWord
+		);
+		if (utils.hasAlphabet(additionalValue) === false) {
+			return additionalValue;
+		}
+
 		// 準備
-		this.createWorkWords();
+		this.createWorkWords(additionalValue);
 
 		this.afterWord = this.workWords.map((value) => {
+			// 名詞に変換
+			value = this.convertNoun(value);
+			if (utils.hasAlphabet(value) === false) {
+				return value;
+			}
+
 			if (this.isConvertNumbers === true) {
 				// 数字の場合
 				if (new RegExp("\\d+").test(value) === true) {

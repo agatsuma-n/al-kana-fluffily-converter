@@ -1,7 +1,14 @@
+import * as types from "../types";
+
 export function matchAllAtIgnoreCase(pattern: string, value: string) {
 	// 大文字小文字区別しない
 	const reg = new RegExp(pattern, "ig");
 	return value.matchAll(reg);
+}
+
+export function hasAlphabet(value: string) {
+	const reg = new RegExp(types.AlphabetPattern, "i");
+	return reg.test(value);
 }
 
 export function replaceSymbolToSpaceOrOmit(value: string) {
