@@ -24,3 +24,5 @@ export const NPattern = `ny?${Vowel}{1}|n`;
 export const RomaPattern = `(${BaseRomaPattern})|(${NPattern})|(?<long>\-)`;
 
 export const AlphabetPattern = `[a-z]`;
+
+export const EnglishLength = 4;

@@ -71,22 +71,38 @@ export class Converter {
 		return this.characterToKanaConverter.convert(value);
 	}
 
-	convertEnglishWord(value: string) {
-		// // カナに変換できるか確認
-		// // 英字が無ければ変換できたと判定し返却
-		// const testKana = this.romaToKanaConverter.convert(value);
-		// if (utils.hasAlphabet(testKana) === false) {
-		// 	return testKana;
-		// }
-
+	convertEnglishToKana(value: string) {
 		// 変換対象をローマ字に変換
 		const roma = this.wordToRomaConverter.convert(value);
 
 		// ローマ字をカナに変換
-		const incompleteKana = this.romaToKanaConverter.convert(roma);
+		const kana = this.romaToKanaConverter.convert(roma);
 
-		// 変換できなかった文字を文字単位でカナ変換
-		return this.characterToKanaConverter.convert(incompleteKana);
+		return kana;
+	}
+
+	convertEnglishOrRoma(value: string) {
+		// ローマ字としてカナ変換
+		const romaBasedKana = this.romaToKanaConverter.convert(value);
+
+		// 英単語としてカナ変換
+		const englishBasedKana = this.convertEnglishToKana(value);
+
+		// ローマ字では変換しきれなかったため、英単語としてみなす
+		if (utils.hasAlphabet(romaBasedKana) === true) {
+			// 変換できなかった文字を文字単位でカナ変換
+			return this.characterToKanaConverter.convert(englishBasedKana);
+		}
+
+		// 英単語では変換しきれなかったため、ローマ字としてみなす
+		if (utils.hasAlphabet(englishBasedKana) === true) {
+			return romaBasedKana;
+		}
+
+		// 規定文字数以下の場合は英単語を優先する
+		return value.length <= types.EnglishLength
+			? englishBasedKana
+			: romaBasedKana;
 	}
 
 	convertNumber(value: string) {
@@ -131,8 +147,8 @@ export class Converter {
 				return this.convertAlphabet(value);
 			}
 
-			// 上記以外(英単語)
-			return this.convertEnglishWord(value);
+			// 上記以外(英単語またはローマ)
+			return this.convertEnglishOrRoma(value);
 		});
 
 		return this.afterWord.join("");

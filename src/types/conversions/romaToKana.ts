@@ -76,7 +76,7 @@ export const RomaToKanaConversions: WordConversion[] = [
 	{ conversionPattern: { main: "po" }, afterConversion: "ポ" },
 	{ conversionPattern: { main: "fa" }, afterConversion: "ファ" },
 	{ conversionPattern: { main: "fi" }, afterConversion: "フィ" },
-
+	{ conversionPattern: { main: `fu` }, afterConversion: `フ` },
 	{ conversionPattern: { main: "fe" }, afterConversion: "フェ" },
 	{ conversionPattern: { main: "fo" }, afterConversion: "フォ" },
 	{ conversionPattern: { main: "kya" }, afterConversion: "キャ" },
@@ -85,15 +85,21 @@ export const RomaToKanaConversions: WordConversion[] = [
 
 	{ conversionPattern: { main: "kyo" }, afterConversion: "キョ" },
 	{ conversionPattern: { main: "sha" }, afterConversion: "シャ" },
-
+	{ conversionPattern: { main: `shi` }, afterConversion: `シ` },
 	{ conversionPattern: { main: "shu" }, afterConversion: "シュ" },
 
 	{ conversionPattern: { main: "sho" }, afterConversion: "ショ" },
+	{ conversionPattern: { main: `sya` }, afterConversion: `シャ` },
+	{ conversionPattern: { main: `syu` }, afterConversion: `シュ` },
+	{ conversionPattern: { main: `syo` }, afterConversion: `ショ` },
 	{ conversionPattern: { main: "cha" }, afterConversion: "チャ" },
-
-	{ conversionPattern: { main: "chu" }, afterConversion: "チュ" },
-
+	{ conversionPattern: { main: `chi` }, afterConversion: `チ` },
+	{ conversionPattern: { main: `chu` }, afterConversion: `チュ` },
+	{ conversionPattern: { main: `che` }, afterConversion: `チェ` },
 	{ conversionPattern: { main: "cho" }, afterConversion: "チョ" },
+	{ conversionPattern: { main: `tya` }, afterConversion: `チャ` },
+	{ conversionPattern: { main: `tyu` }, afterConversion: `チュ` },
+	{ conversionPattern: { main: `tyo` }, afterConversion: `チョ` },
 	{ conversionPattern: { main: "nya" }, afterConversion: "ニャ" },
 
 	{ conversionPattern: { main: "nyu" }, afterConversion: "ニュ" },
@@ -120,10 +126,13 @@ export const RomaToKanaConversions: WordConversion[] = [
 
 	{ conversionPattern: { main: "gyo" }, afterConversion: "ギョ" },
 	{ conversionPattern: { main: "ja" }, afterConversion: "ジャ" },
-
+	{ conversionPattern: { main: `ji` }, afterConversion: `ジ` },
 	{ conversionPattern: { main: "ju" }, afterConversion: "ジュ" },
 
 	{ conversionPattern: { main: "jo" }, afterConversion: "ジョ" },
+	{ conversionPattern: { main: `zya` }, afterConversion: `ジャ` },
+	{ conversionPattern: { main: `zyu` }, afterConversion: `ジュ` },
+	{ conversionPattern: { main: `zyo` }, afterConversion: `ジョ` },
 	{ conversionPattern: { main: "dya" }, afterConversion: "ヂャ" },
 
 	{ conversionPattern: { main: "dyu" }, afterConversion: "ヂュ" },
@@ -149,6 +158,7 @@ export const RomaToKanaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `dhu` }, afterConversion: `デュ` },
 	{ conversionPattern: { main: `thi` }, afterConversion: `ティ` },
 	{ conversionPattern: { main: `twu` }, afterConversion: `ツー` },
+	{ conversionPattern: { main: `tsu` }, afterConversion: `ツ` },
 ];
 
 export const SmallPattern = "(.)\\1";
