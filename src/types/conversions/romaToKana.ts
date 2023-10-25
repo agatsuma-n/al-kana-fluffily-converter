@@ -157,7 +157,7 @@ export const RomaToKanaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `dhi` }, afterConversion: `ディ` },
 	{ conversionPattern: { main: `dhu` }, afterConversion: `デュ` },
 	{ conversionPattern: { main: `thi` }, afterConversion: `ティ` },
-	{ conversionPattern: { main: `twu` }, afterConversion: `ツー` },
+	{ conversionPattern: { main: `twu` }, afterConversion: `トゥ` },
 	{ conversionPattern: { main: `tsu` }, afterConversion: `ツ` },
 ];
 
