@@ -23,7 +23,7 @@
 			</head>
 
 			<form>
-				<div class="row justify-content-center">
+				<div class="row justify-content-center mb-3">
 					<div class="col-lg-6">
 						<p class="h3">英単語を入力してください</p>
 						<div class="form-check">
@@ -42,14 +42,30 @@
 							</label>
 						</div>
 						<textarea
-							id="inputWords"
+							id="englishWords"
 							class="form-control"
 							placeholder="改行して複数件入力することができます"
 							style="height: 200px"
 						></textarea>
 					</div>
 				</div>
-				<div class="row justify-content-center">
+
+				<div class="row justify-content-center mb-3">
+					<div class="col-lg-6">
+						<label class="form-label">
+							独自に変換したい単語・名称等を入力してください<br />
+							※「英単語,カナ」の規則に合致しない値は無視されます
+						</label>
+
+						<textarea
+							id="additionalConversions"
+							class="form-control"
+							style="height: 100px"
+						></textarea>
+					</div>
+				</div>
+
+				<div class="row justify-content-center mb-3">
 					<div class="col-lg-6">
 						<div class="d-grid gap-2">
 							<button
@@ -65,7 +81,7 @@
 
 				<div class="row justify-content-center">
 					<div class="col-lg-6">
-						<div class="result mt-3">
+						<div class="result">
 							<p class="h3">変換結果</p>
 							<ul class="convert-list container"></ul>
 						</div>
