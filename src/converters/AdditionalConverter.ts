@@ -29,6 +29,21 @@ export class AdditionalConverter extends BaseConverter {
 		return this.additionalConversions;
 	}
 
+	/**
+	 * 名前付きグループ化して返却する
+	 * @param pattern
+	 * @returns
+	 */
+	createPattern(pattern: types.Pattern) {
+		const grouping = (name: string, value?: string) =>
+			`(?<${name}>${value ?? ""})`;
+
+		return `${grouping("prefix", pattern.prefix)}${grouping(
+			"main",
+			utils.escapeRegExp(pattern.main)
+		)}${grouping("suffix", pattern.suffix)}`;
+	}
+
 	convert(word: string) {
 		super.convert(word);
 

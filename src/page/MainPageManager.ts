@@ -1,52 +1,89 @@
 import { FluffyConverter } from "../FluffyConverter";
+import { SimpleConversion } from "../types";
 import * as utils from "../utils";
 
 export class MainPageManager {
+	getElement<T extends Element>(query: string): T {
+		return utils.qsStrict<T>(document, query);
+	}
+
+	createLiByResult(word: string, kana: string) {
+		console.log(`${word}: ${kana}`);
+
+		const li = document.createElement("li");
+		li.classList.add("row");
+
+		const addPToLi = (value: string, colClass?: string) => {
+			const pElement = document.createElement("p");
+			pElement.classList.add(colClass ?? "col");
+			pElement.classList.add("text-break");
+			pElement.innerHTML = value;
+			li.appendChild(pElement);
+		};
+		addPToLi(word, "col-3");
+		addPToLi(kana, "col-7");
+
+		return li;
+	}
+
+	getAdditionalConversions() {
+		const additionalConversions = this.getElement<HTMLTextAreaElement>(
+			"#additionalConversions"
+		);
+
+		const formatValues = additionalConversions.value
+			.split("\n")
+			.map((row) => row.split(",").map((value) => value.trim()));
+
+		return formatValues
+			.filter((columns) => {
+				if (columns.length !== 2) {
+					return false;
+				}
+				return columns.every((value) => value.length !== 0);
+			})
+			.map(
+				(value) =>
+					({
+						word: value[0],
+						kana: value[1],
+					} as SimpleConversion)
+			);
+	}
+
 	execConvert() {
-		const convertList = utils.qsStrict<HTMLUListElement>(
-			document,
-			".convert-list"
-		);
-		const inputWordsTextArea = utils.qsStrict<HTMLTextAreaElement>(
-			document,
-			"#inputWords"
-		);
-		const isConvertNumbersCheckBox = utils.qsStrict<HTMLInputElement>(
-			document,
-			"#isConvertNumbers"
+		const isConvertNumbers =
+			this.getElement<HTMLInputElement>("#isConvertNumbers");
+
+		const converter = new FluffyConverter(
+			isConvertNumbers.checked,
+			this.getAdditionalConversions()
 		);
 
-		const converter = new FluffyConverter(isConvertNumbersCheckBox.checked);
-
+		const convertList = this.getElement<HTMLUListElement>(".convert-list");
 		convertList.innerHTML = "";
-		const words = inputWordsTextArea.value.split("\n");
+
+		const englishWords =
+			this.getElement<HTMLTextAreaElement>("#englishWords");
+		const words = englishWords.value.split("\n");
 
 		words.forEach((word) => {
 			const kana = converter.convert(word);
-			console.log(`${word}: ${kana}`);
-
-			const li = document.createElement("li");
-			li.classList.add("row");
-
-			const addPToLi = (value: string, colClass?: string) => {
-				const pElement = document.createElement("p");
-				pElement.classList.add(colClass ?? "col");
-				pElement.classList.add("text-break");
-				pElement.innerHTML = value;
-				li.appendChild(pElement);
-			};
-			addPToLi(word, "col-3");
-			addPToLi(kana, "col-7");
-
-			convertList.appendChild(li);
+			convertList.appendChild(this.createLiByResult(word, kana));
 		});
 	}
 
 	init() {
-		const execButton = utils.qsStrict<HTMLButtonElement>(
-			document,
-			"#execConvert"
+		const additionalConversions = this.getElement<HTMLTextAreaElement>(
+			"#additionalConversions"
 		);
-		execButton.addEventListener("click", this.execConvert);
+		additionalConversions.placeholder = [
+			"(例)",
+			"test,テスト",
+			"ww,ワラワラ",
+		].join("\n");
+
+		const execButton = this.getElement<HTMLButtonElement>("#execConvert");
+		execButton.addEventListener("click", this.execConvert.bind(this));
 	}
 }

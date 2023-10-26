@@ -6,6 +6,14 @@ export function matchAllAtIgnoreCase(pattern: string, value: string) {
 	return value.matchAll(reg);
 }
 
+export function escapeRegExp(value: string) {
+	// 特殊文字をエスケープする正規表現パターン
+	const regexPattern = /[-/\\^$*+?.()|[\]{}]/g;
+
+	// 特殊文字をエスケープして返す
+	return value.replace(regexPattern, "\\$&");
+}
+
 export function hasAlphabet(value: string) {
 	const reg = new RegExp(types.AlphabetPattern, "i");
 	return reg.test(value);

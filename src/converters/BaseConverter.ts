@@ -44,18 +44,11 @@ export abstract class BaseConverter {
 
 				const matches = utils.matchAllAtIgnoreCase(pattern, word);
 
-				return [...matches].map((match) => {
-					const mainPattern = match.groups!.main;
-					const startIndex =
-						(match.index ?? 0) + (match.groups?.prefix.length ?? 0);
-					return {
-						mainPattern,
-						startIndex,
-						endIndex: startIndex + mainPattern.length,
-						pattern,
-						afterConversion,
-					} as types.MatchResult;
-				});
+				return utils.convertToMatchResult(
+					matches,
+					pattern,
+					afterConversion
+				);
 			})
 			.filter(utils.nonNullable);
 

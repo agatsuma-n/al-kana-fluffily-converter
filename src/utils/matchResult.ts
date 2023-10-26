@@ -1,5 +1,24 @@
 import * as types from "../types";
 
+export function convertToMatchResult(
+	matches: IterableIterator<RegExpMatchArray>,
+	pattern: string,
+	afterConversion: string
+) {
+	return [...matches].map((match) => {
+		const mainPattern = match.groups!.main;
+		const startIndex =
+			(match.index ?? 0) + (match.groups?.prefix.length ?? 0);
+		return {
+			mainPattern,
+			startIndex,
+			endIndex: startIndex + mainPattern.length,
+			pattern,
+			afterConversion,
+		} as types.MatchResult;
+	});
+}
+
 export function filterUniqueMatchPattern(list: types.MatchResult[]) {
 	return list.filter(
 		(a, index) =>
