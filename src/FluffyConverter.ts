@@ -10,7 +10,7 @@ export class FluffyConverter {
 
 	/**
 	 *
-	 * @param additionalConversions 優先的に変換する単語セット
+	 * @param additionalConversions 追加の変換一覧
 	 */
 	constructor(
 		isConvertNumbers: boolean,
