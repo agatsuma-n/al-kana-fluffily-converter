@@ -2,7 +2,8 @@
 	"name": "al-kana-fluffy-converter",
 	"version": "0.0.0",
 	"description": "ふんわりと英語をカタカナに変換します",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"prettier:check": "prettier --check .",
 		"prettier:write": "prettier --write .",
@@ -11,6 +12,7 @@
 		"build": "tsc",
 		"build:watch": "webpack --mode development -w",
 		"build:web": "webpack --mode development",
+		"prepare": "npm run build",
 		"start": "webpack serve --mode development --open",
 		"test": "jest --detectOpenHandles --forceExit",
 		"deploy": "npm run build:web && gh-pages -d public"
