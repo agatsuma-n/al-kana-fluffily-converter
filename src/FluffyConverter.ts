@@ -10,6 +10,7 @@ export class FluffyConverter {
 
 	/**
 	 *
+	 * @param isConvertNumbers 数字の変換有無。trueなら1->ワンと言うように変換する
 	 * @param additionalConversions 追加の変換一覧
 	 */
 	constructor(
@@ -21,9 +22,9 @@ export class FluffyConverter {
 	}
 
 	/**
-	 * メインとなる関数
-	 * @param word
-	 * @returns
+	 * 英単語をカナに変換する
+	 * @param word 変換したい英単語
+	 * @returns カナ
 	 */
 	convert(word: string) {
 		// TODO: converterチェック
