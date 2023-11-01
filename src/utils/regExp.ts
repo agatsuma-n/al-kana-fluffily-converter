@@ -19,6 +19,15 @@ export function hasAlphabet(value: string) {
 	return reg.test(value);
 }
 
+export function hasNumber(value: string) {
+	const reg = new RegExp("\\d");
+	return reg.test(value);
+}
+
+export function hasKanaOnly(value: string) {
+	return hasAlphabet(value) === false && hasNumber(value) === false;
+}
+
 export function replaceSymbolToSpaceOrOmit(value: string) {
 	// 除外
 	const omitValue = value.replace(new RegExp("'", "g"), "");
