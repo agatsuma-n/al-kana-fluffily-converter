@@ -121,7 +121,7 @@ export class Converter {
 		const additionalValue = this.convertAdditionalConversion(
 			this.beforeWord
 		);
-		if (utils.hasAlphabet(additionalValue) === false) {
+		if (utils.hasKanaOnly(additionalValue) === true) {
 			return additionalValue;
 		}
 
@@ -131,13 +131,13 @@ export class Converter {
 		this.afterWord = this.workWords.map((value) => {
 			// 名詞に変換
 			value = this.convertNoun(value);
-			if (utils.hasAlphabet(value) === false) {
+			if (utils.hasKanaOnly(value) === true) {
 				return value;
 			}
 
 			if (this.isConvertNumbers === true) {
 				// 数字の場合
-				if (new RegExp("\\d+").test(value) === true) {
+				if (utils.hasNumber(value) === true) {
 					return this.convertNumber(value);
 				}
 			}
