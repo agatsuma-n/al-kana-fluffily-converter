@@ -3,8 +3,8 @@ import { Consonant, Vowel } from "../wordPattern";
 
 export const WordToRomaConversions: WordConversion[] = [
 	{
-		conversionPattern: { prefix: Vowel, main: "t" },
-		afterConversion: "tto",
+		conversionPattern: { prefix: `${Vowel}`, main: `t`, suffix: `$` },
+		afterConversion: `tto`,
 	},
 	{
 		conversionPattern: { main: `m`, suffix: `$` },
@@ -20,7 +20,10 @@ export const WordToRomaConversions: WordConversion[] = [
 	},
 	{ conversionPattern: { main: "c", suffix: "a" }, afterConversion: "k" },
 	{ conversionPattern: { main: "ca", suffix: "p" }, afterConversion: "kya" },
-	{ conversionPattern: { main: "ar" }, afterConversion: "a-" },
+	{
+		conversionPattern: { main: `ar`, suffix: `[^aiueo]|$` },
+		afterConversion: `a-`,
+	},
 	{ conversionPattern: { main: "cau" }, afterConversion: "kou" },
 	{ conversionPattern: { main: "tio" }, afterConversion: "sho" },
 	{
@@ -53,7 +56,10 @@ export const WordToRomaConversions: WordConversion[] = [
 		afterConversion: `a-`,
 	},
 	{ conversionPattern: { main: `sh`, suffix: `[ie]` }, afterConversion: `s` },
-	{ conversionPattern: { main: "ie" }, afterConversion: "i-" },
+	{
+		conversionPattern: { main: `ie`, suffix: `(l.)|$` },
+		afterConversion: `i-`,
+	},
 	{
 		conversionPattern: { main: `l`, suffix: `[^aiueo]` },
 		afterConversion: `ru`,
@@ -69,7 +75,10 @@ export const WordToRomaConversions: WordConversion[] = [
 	},
 	{ conversionPattern: { main: "oor" }, afterConversion: "oa" },
 	{ conversionPattern: { main: "ir" }, afterConversion: "a-" },
-	{ conversionPattern: { main: `d`, suffix: `$` }, afterConversion: `do` },
+	{
+		conversionPattern: { main: `d`, suffix: `${Consonant}|$` },
+		afterConversion: `do`,
+	},
 	{ conversionPattern: { main: "oe" }, afterConversion: "u-" },
 	{ conversionPattern: { main: "cu" }, afterConversion: "kyu-" },
 	{ conversionPattern: { prefix: `.+`, main: `be` }, afterConversion: `bu` },
@@ -95,7 +104,11 @@ export const WordToRomaConversions: WordConversion[] = [
 	{ conversionPattern: { main: "lo" }, afterConversion: "ro" },
 	{ conversionPattern: { main: "ck" }, afterConversion: "kku" },
 	{
-		conversionPattern: { prefix: `[^r\-]`, main: `s`, suffix: `$` },
+		conversionPattern: {
+			prefix: `[^r\-]`,
+			main: `s`,
+			suffix: `[^aiueohy]|$`,
+		},
 		afterConversion: `su`,
 	},
 	{ conversionPattern: { prefix: Vowel, main: "k" }, afterConversion: "ku" },
@@ -136,7 +149,11 @@ export const WordToRomaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `ny` }, afterConversion: `ni` },
 	{ conversionPattern: { main: `ty` }, afterConversion: `ティ` },
 	{
-		conversionPattern: { prefix: `.[r(ll)s]?`, main: `y` },
+		conversionPattern: {
+			prefix: `.[r(ll)s]?`,
+			main: `y`,
+			suffix: `${Consonant}|$`,
+		},
 		afterConversion: `i-`,
 	},
 	{ conversionPattern: { main: `l{1,2}` }, afterConversion: `r` },
@@ -199,7 +216,6 @@ export const WordToRomaConversions: WordConversion[] = [
 		conversionPattern: { prefix: `(vi)|(ca)|u`, main: `su` },
 		afterConversion: `ju`,
 	},
-	{ conversionPattern: { prefix: `^`, main: `al` }, afterConversion: `o-ru` },
 	{
 		conversionPattern: { prefix: `.+`, main: `al`, suffix: `$` },
 		afterConversion: `aru`,
@@ -252,9 +268,10 @@ export const WordToRomaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `singer` }, afterConversion: `singa-` },
 	{ conversionPattern: { prefix: `f`, main: `our` }, afterConversion: `o-` },
 	{
-		conversionPattern: { main: `x`, suffix: `[^aiueo]?` },
+		conversionPattern: { main: `x`, suffix: `[^aiueo]|$` },
 		afterConversion: `ックス`,
 	},
+	{ conversionPattern: { prefix: `.`, main: `xa` }, afterConversion: `kusa` },
 	{ conversionPattern: { main: `hn`, suffix: `$` }, afterConversion: `n` },
 	{ conversionPattern: { main: `ber` }, afterConversion: `ba-` },
 	{
@@ -262,4 +279,46 @@ export const WordToRomaConversions: WordConversion[] = [
 		afterConversion: `twue`,
 	},
 	{ conversionPattern: { main: `tee` }, afterConversion: `ティ-` },
+	{ conversionPattern: { prefix: `a`, main: `h` }, afterConversion: `` },
+	{ conversionPattern: { main: `ew` }, afterConversion: `yu-` },
+	{
+		conversionPattern: { prefix: ``, main: `w`, suffix: `${Consonant}|$` },
+		afterConversion: `u`,
+	},
+	{ conversionPattern: { main: `tthew` }, afterConversion: `syu-` },
+	{ conversionPattern: { main: `chl` }, afterConversion: `kur` },
+	{ conversionPattern: { main: `chlo` }, afterConversion: `クロ` },
+	{ conversionPattern: { main: `chri` }, afterConversion: `クリ` },
+	{
+		conversionPattern: { prefix: `.`, main: `sh`, suffix: `$` },
+		afterConversion: `ッsyu`,
+	},
+	{
+		conversionPattern: { prefix: `.`, main: `sh`, suffix: `${Consonant}` },
+		afterConversion: `syu`,
+	},
+	{ conversionPattern: { main: `tte` }, afterConversion: `tto` },
+	{
+		conversionPattern: { main: `char`, suffix: `(lotte)|(lize)` },
+		afterConversion: `sha-`,
+	},
+	{ conversionPattern: { main: `zha` }, afterConversion: `za` },
+	{
+		conversionPattern: { main: `tho`, suffix: `m[aiueo]` },
+		afterConversion: `to-`,
+	},
+	{ conversionPattern: { main: `geor` }, afterConversion: `jo-` },
+	{
+		conversionPattern: {
+			prefix: `.`,
+			main: `ge`,
+			suffix: `${Consonant}|$`,
+		},
+		afterConversion: `ji`,
+	},
+	{
+		conversionPattern: { prefix: `.`, main: `gi`, suffix: `(a)|(na)` },
+		afterConversion: `ji`,
+	},
+	{ conversionPattern: { main: `el` }, afterConversion: `eru` },
 ];
