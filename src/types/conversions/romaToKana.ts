@@ -161,4 +161,4 @@ export const RomaToKanaConversions: WordConversion[] = [
 	{ conversionPattern: { main: `tsu` }, afterConversion: `ツ` },
 ];
 
-export const SmallPattern = "(.)\\1";
+export const SmallPattern = "([ksthp])\\1";
